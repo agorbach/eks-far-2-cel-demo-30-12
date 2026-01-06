@@ -312,7 +312,14 @@ kubectl get nodes
 
 בשלב זה נריץ אפליקציית Flask קיימת בתוך Cluster של Amazon EKS,  
 באמצעות Image שנמצא ב־Amazon ECR.
-.
+
+```bash
+cd ~/eks-far-2-cel-demo-30-12
+mkdir -p app
+cd app
+git clone https://github.com/agorbach/test2025.git
+cd test2025/far-2-cel
+```
 
 ---
 
