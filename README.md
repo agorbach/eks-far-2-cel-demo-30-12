@@ -300,9 +300,7 @@ kubectl get nodes
 
 בשלב זה נריץ אפליקציית Flask קיימת בתוך Cluster של Amazon EKS,  
 באמצעות Image שנמצא ב־Amazon ECR.
-
-> 💡 בדמו זה **לא בונים Docker Image בכיתה**.  
-> מניחים שקיים Image מוכן (או שנבנה מראש).
+.
 
 ---
 
@@ -322,7 +320,7 @@ aws ecr create-repository   --repository-name far-2-cel   --region $REGION
 ## 1️⃣1️⃣.2️⃣ התחברות ל־Amazon ECR
 
 ```bash
-aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $390403875536.dkr.ecr.$REGION.amazonaws.com
 ```
 
 ---
@@ -346,7 +344,7 @@ spec:
     spec:
       containers:
         - name: far-2-cel
-          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
+          image: 390403875536.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
           ports:
             - containerPort: 8080
 ```
