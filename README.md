@@ -299,9 +299,7 @@ kubectl get nodes
 
 בשלב זה נריץ אפליקציית Flask קיימת בתוך Cluster של Amazon EKS,  
 באמצעות Image שנמצא ב־Amazon ECR.
-
-> 💡 בדמו זה **לא בונים Docker Image בכיתה**.  
-> מניחים שקיים Image מוכן (או שנבנה מראש).
+.
 
 ---
 
