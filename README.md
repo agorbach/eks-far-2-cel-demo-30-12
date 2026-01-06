@@ -144,6 +144,9 @@ cd eks-far-2-cel-demo-30-12
 מבנה צפוי:
 ```
 README.md
+main.tf
+provider.tf
+versions.tf
 
 ```
 
