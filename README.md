@@ -56,8 +56,9 @@ Terraform
 2. היכנס לכתובת: https://console.aws.amazon.com  
 3. התחבר לחשבון ה-AWS שלך  
 4. בפינה הימנית העליונה בחר Region: 
-us-east-1 (N. Virginia)
-```
+
+
+**N. Virginia (us-east-1)**
 
 ---
 
