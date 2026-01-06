@@ -192,7 +192,7 @@ nano main.tf
 
 ```hcl
 ############################################
-# משתנים
+
 ############################################
 variable "account_id" {
   description = "AWS Account ID (12 digits)"
