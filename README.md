@@ -318,6 +318,10 @@ yes
 
 ```bash
 aws eks update-kubeconfig   --region us-east-1   --name eks-13
+aws eks update-cluster-config \
+  --name eks-13 \
+  --region us-east-1 \
+  --resources-vpc-config endpointPublicAccess=true,endpointPrivateAccess=true,publicAccessCidrs=0.0.0.0/0
 
 kubectl get nodes
 ```
