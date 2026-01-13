@@ -360,8 +360,8 @@ aws ecr get-login-password --region $REGION | docker login --username AWS --pass
 
 ```bash
 docker build -t far-2-cel:1.0 .
-docker tag far-2-cel:1.0 ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
-docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
+docker tag far-2-cel:1.0 $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
+docker push $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
 ```
 
 ---
