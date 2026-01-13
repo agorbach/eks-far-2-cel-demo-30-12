@@ -390,7 +390,7 @@ spec:
     spec:
       containers:
         - name: far-2-cel
-          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
+          image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/far-2-cel:1.0
           ports:
             - containerPort: 8080
 ```
