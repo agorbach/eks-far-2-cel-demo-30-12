@@ -255,14 +255,7 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  # ✅ API Server access – נכון ל-v21
-  cluster_endpoint_public_access  = true
-  cluster_endpoint_private_access = true
-
-  cluster_endpoint_public_access_cidrs = [
-    "0.0.0.0/0"
-  ]
-
+  
   ##########################################
   # IAM → Kubernetes (Access Entries)
   ##########################################
