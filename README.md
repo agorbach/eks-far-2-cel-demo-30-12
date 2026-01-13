@@ -247,7 +247,7 @@ module "vpc" {
 ############################################
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "21.0.0"
+  version = ">=21.1.0"
 
   # ✅ v21.x: cluster_name -> name
   name = "eks-far-2-cel-demo-30-12"
