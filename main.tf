@@ -1,5 +1,6 @@
-# חובה להחליף default במספר החשבון שלכם (ACCOUNT_ID).
-
+############################################
+# Account
+############################################
 variable "account_id" {
   description = "AWS Account ID (12 digits)"
   type        = string
@@ -24,36 +25,49 @@ module "vpc" {
   single_nat_gateway = true
 
   public_subnet_tags = {
-    "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster/eks-13" = "shared"
+    "kubernetes.io/role/elb"               = "1"
+    "kubernetes.io/cluster/eks-13"         = "shared"
   }
 
   private_subnet_tags = {
-    "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/eks-13" = "shared"
+    "kubernetes.io/role/internal-elb"      = "1"
+    "kubernetes.io/cluster/eks-13"         = "shared"
   }
 }
 
-
 ############################################
-# EKS (terraform-aws-modules/eks/aws v21.x)
+# EKS Cluster
 ############################################
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "21.0.0"
 
-  # ✅ v21.x: cluster_name -> name
-  name = "eks-13"
-
-  # ✅ v21.x: cluster_version -> kubernetes_version
+  name               = "eks-13"
   kubernetes_version = "1.30"
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  ##########################################
-  # IAM → Kubernetes (Access Entries)
-  ##########################################
+  #################################################
+  # ⭐️ CRITICAL: Managed EKS Addons (אל תוותר על זה)
+  #################################################
+  cluster_addons = {
+    coredns = {
+      most_recent = true
+    }
+
+    kube-proxy = {
+      most_recent = true
+    }
+
+    vpc-cni = {
+      most_recent = true
+    }
+  }
+
+  #################################################
+  # IAM → Kubernetes Access
+  #################################################
   access_entries = {
     admin = {
       principal_arn = "arn:aws:iam::${var.account_id}:user/eks-far-2-cel-demo-user"
@@ -69,15 +83,14 @@ module "eks" {
     }
   }
 
-  ##########################################
+  #################################################
   # Managed Node Group
-  ##########################################
+  #################################################
   eks_managed_node_groups = {
     default = {
       name           = "default-ng"
       instance_types = ["t3.medium"]
-
-      ami_type = "AL2_x86_64"
+      ami_type       = "AL2_x86_64"
 
       min_size     = 1
       desired_size = 2
@@ -85,4 +98,3 @@ module "eks" {
     }
   }
 }
-
