@@ -22,7 +22,19 @@ module "vpc" {
 
   enable_nat_gateway = true
   single_nat_gateway = true
+
+  # 🔑 קריטי ל-EKS
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = "1"
+    "kubernetes.io/cluster/eks-far-2-cel-demo-30-12" = "shared"
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/eks-far-2-cel-demo-30-12" = "shared"
+  }
 }
+
 
 ############################################
 # EKS (terraform-aws-modules/eks/aws v21.x)
