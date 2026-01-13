@@ -249,17 +249,19 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = ">=21.1.0"
 
-  # ✅ v21.x: cluster_name -> name
-  name = "eks-far-2-cel-demo-30-12"
-
-  # ✅ v21.x: cluster_version -> kubernetes_version
-  kubernetes_version = "1.30"
-
-  cluster_endpoint_public_access_enabled  = true
-  cluster_endpoint_private_access_enabled = true
+  name                 = "eks-far-2-cel-demo-30-12"
+  kubernetes_version   = "1.30"
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
+
+  # ✅ API Server access – נכון ל-v21
+  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = true
+
+  cluster_endpoint_public_access_cidrs = [
+    "0.0.0.0/0"
+  ]
 
   ##########################################
   # IAM → Kubernetes (Access Entries)
@@ -295,6 +297,7 @@ module "eks" {
     }
   }
 }
+
 
 
 ```
